@@ -1,0 +1,65 @@
+# Commands to run experiments with proper hyperparameters. The prelaunch commands set up each job,
+# and the launch command at the bottom can be run separately to run any job locally.
+
+### PointMaze
+onager prelaunch +jobname point_maze_DOIE +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/point_maze --run_title DOIE --hyper_parameter_name 00 --use_knownness --use_torch_knownness --clip_q_targets --counting_epsilon 0.1 --approx_filter_radius 0.001" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname point_maze_OPIQ +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/point_maze --run_title OPIQ --hyper_parameter_name 00 --use_counting --bootstrap_counts True --counting_epsilon 0.01 --counting_scaling 0.001 --bootstrap_counting_scaling 0.01" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname point_maze_RND +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/point_maze --run_title RND --hyper_parameter_name 00 --use_rnd --rnd_scaling 0.01" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname point_maze_MPE +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/point_maze --run_title MPE --hyper_parameter_name 00 --use_mpe_bonus --mpe_scaling 0.01" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname point_maze_OptBias +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/point_maze --run_title OptBias --hyper_parameter_name 00 --use_naive_optimism" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname point_maze_RBFDQN +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/point_maze --run_title RBFDQN --hyper_parameter_name 00" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname point_maze_random +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/point_maze --run_title random_agent --hyper_parameter_name 00 --random_agent" +arg --seed 0 1 2 3 4
+
+### Pendulum
+onager prelaunch +jobname pendulum_DOIE +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/pendulum --run_title DOIE --hyper_parameter_name 10 --use_knownness --use_torch_knownness --clip_q_targets --counting_epsilon 2.0 --approx_filter_radius 0.1 --action_scaling 4.0" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname pendulum_OPIQ +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/pendulum --run_title OPIQ --hyper_parameter_name 10 --use_counting --max_episode 600 --skip_normalization False --updates_per_episode 1000 --bootstrap_counts True --action_scaling 1.0 --counting_epsilon 0.3 --counting_scaling 0.1 --bootstrap_counting_scaling 0.01" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname pendulum_RND +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/pendulum --run_title RND --hyper_parameter_name 10 --use_rnd --rnd_scaling 1.0" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname pendulum_MPE +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/pendulum --run_title MPE --hyper_parameter_name 10 --use_mpe_bonus --mpe_scaling 3000." +arg --seed 0 1 2 3 4
+onager prelaunch +jobname pendulum_OptBias +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/pendulum --run_title OptBias --hyper_parameter_name 10 --use_naive_optimism" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname pendulum_RBFDQN +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/pendulum --run_title RBFDQN --hyper_parameter_name 10" +arg --seed 0 1 2 3 4
+
+### Acrobot
+onager prelaunch +jobname acrobot_DOIE +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/acrobot --run_title DOIE --hyper_parameter_name 20 --use_knownness --use_torch_knownness --clip_q_targets --counting_epsilon 0.3 --approx_filter_radius 0.25 --action_scaling 2.0" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname acrobot_OPIQ +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/acrobot --run_title OPIQ --hyper_parameter_name 20 --use_counting --max_episode 600 --skip_normalization False --bootstrap_counts True --action_scaling 1.0 --counting_epsilon 0.3 --counting_scaling 0.1 --bootstrap_counting_scaling 0.01" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname acrobot_RND +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/acrobot --run_title RND --hyper_parameter_name 20 --use_rnd --rnd_scaling 0.03" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname acrobot_MPE +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/acrobot --run_title MPE --hyper_parameter_name 20 --use_mpe_bonus --mpe_scaling 0.01" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname acrobot_OptBias +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/acrobot --run_title OptBias --hyper_parameter_name 20 --use_naive_optimism" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname acrobot_RBFDQN +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/acrobot --run_title RBFDQN --hyper_parameter_name 20" +arg --seed 0 1 2 3 4
+
+### Ball In Cup
+onager prelaunch +jobname ball_in_cup_DOIE +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/ball_in_cup --run_title DOIE --hyper_parameter_name 30 --use_knownness --use_torch_knownness --clip_q_targets --counting_epsilon 2.0 --approx_filter_radius 0.75 --action_scaling 2.0" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname ball_in_cup_OPIQ +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/ball_in_cup --run_title OPIQ --hyper_parameter_name 30 --use_counting --max_episode 350 --skip_normalization False --updates_per_episode 1000 --bootstrap_counts True --action_scaling 1.0 --counting_epsilon 0.3 --counting_scaling 0.1 --bootstrap_counting_scaling 0.01" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname ball_in_cup_RND +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/ball_in_cup --run_title RND --hyper_parameter_name 30 --use_rnd --rnd_scaling 0.1" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname ball_in_cup_MPE +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/ball_in_cup --run_title MPE --hyper_parameter_name 30 --use_mpe_bonus --mpe_scaling 10.0" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname ball_in_cup_OptBias +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/ball_in_cup --run_title OptBias --hyper_parameter_name 30 --use_naive_optimism" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname ball_in_cup_RBFDQN +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/ball_in_cup --run_title RBFDQN --hyper_parameter_name 30" +arg --seed 0 1 2 3 4
+
+### Hopper Stand
+onager prelaunch +jobname hopper_stand_DOIE +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/hopper_stand --run_title DOIE --hyper_parameter_name 40 --use_knownness --use_torch_knownness --clip_q_target --num_points 20 --approx_filter_radius 0.6 --counting_epsilon 1.0 --action_scaling 1.0" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname hopper_stand_OPIQ +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/hopper_stand --run_title OPIQ --hyper_parameter_name 40 --use_counting --bootstrap_counts True --action_scaling 0.5 --counting_epsilon 0.5 --counting_scaling 0.001 --bootstrap_counting_scaling 0.0001" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname hopper_stand_RND +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/hopper_stand --run_title RND --hyper_parameter_name 40 --use_rnd --rnd_scaling 0.01" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname hopper_stand_MPE +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/hopper_stand --run_title MPE --hyper_parameter_name 40 --use_mpe_bonus --mpe_scaling 0.0001" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname hopper_stand_OptBias +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/hopper_stand --run_title OptBias --hyper_parameter_name 40 --use_naive_optimism" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname hopper_stand_RBFDQN +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/hopper_stand --run_title RBFDQN --hyper_parameter_name 40" +arg --seed 0 1 2 3 4
+
+### Hopper Stand (TD3)
+onager prelaunch +jobname hopper_stand_DOIE +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/TD3/hopper_stand --run_title DOIE --hyper_parameter_name 40 --use_TD3 --use_knownness --use_torch_knownness --clip_q_target --num_points 20 --learning_rate 0.00025 --learning_rate_policy_module 0.0001 --policy_noise 0.2 --counting_epsilon 1.0 --approx_filter_radius 0.5" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname hopper_stand_OPIQ +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/TD3/hopper_stand --run_title OPIQ --hyper_parameter_name 40_TD3 --use_TD3 --use_counting --bootstrap_counts True --learning_rate 0.00025 --learning_rate_policy_module 0.0001 --action_scaling 0.5 --counting_epsilon 0.3 --counting_scaling 0.001 --bootstrap_counting_scaling 0.0001" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname hopper_stand_RND +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/TD3/hopper_stand --run_title RND --hyper_parameter_name 40_TD3 --use_TD3 --use_rnd --rnd_scaling 0.01 --learning_rate 0.00025 --learning_rate_policy_module 0.0001" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname hopper_stand_MPE +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/TD3/hopper_stand --run_title MPE --hyper_parameter_name 40_TD3 --use_TD3 --use_mpe_bonus --mpe_scaling 0.1 --learning_rate 0.00025 --learning_rate_policy_module 0.0001" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname hopper_stand_OptBias +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/TD3/hopper_stand --run_title OptBias --hyper_parameter_name 40_TD3 --use_TD3 --use_naive_optimism" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname hopper_stand_RBFDQN +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/TD3/hopper_stand --run_title RBFDQN --hyper_parameter_name 40_TD3" +arg --seed 0 1 2 3 4
+
+
+### MountainCar
+onager prelaunch +jobname mcar_uniform_optimism +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/mcar --run_title uniform_optimism --hyper_parameter_name 50 --use_knownness --use_torch_knownness --clip_q_targets" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname mcar_value_shaping +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/mcar --run_title q_shaping --hyper_parameter_name 50 --use_knownness --use_torch_knownness --clip_q_targets --shaping_func_name max_steps_away" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname mcar_anti_value_shaping +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/mcar --run_title anti_q_shaping --hyper_parameter_name 50 --use_knownness --use_torch_knownness --clip_q_targets --shaping_func_name reversed_max_steps_away" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname mcar_OptBias +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/mcar --run_title OptBias --hyper_parameter_name 50 --use_rnd --use_naive_optimism" +arg --seed 0 1 2 3 4
+onager prelaunch +jobname mcar_reward_shaping +no-tag-number +command "python -u experiments/train.py --device cuda --experiment_name ./local_plots/mcar --run_title reward_shaping --hyper_parameter_name 50 --use_rnd --mcar_reward_shaping_scale 10.0" +arg --seed 0 1 2 3 4
+
+
+# Launch any command by uncommenting and editing the jobname in the following line:
+
+JOBNAME=point_maze_DOIE
+onager launch --backend local --jobname $JOBNAME --max-tasks 2
